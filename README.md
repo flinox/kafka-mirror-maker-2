@@ -2,27 +2,13 @@
 An implementation of Apache Kafka Mirror Maker 2 ( MM2 ) to replicate kafka topics between clusters kafka ( Inclusive Azure Event Hub ).
 Kafka version 3.0.0 and Scala 2.13
 
-### `Settings the credentials of source and target`
+### Settings the credentials of source and target
 
 Use the template **[/properties/template_access.properties](/properties/template_access.properties)** para gerar um arquivo **[/properties/access.properties](/properties/access.properties)** com as informações de acesso ao Kafka e ao Azure Event Hub.
 
 Este arquivo será usado pelo MM2.
 
-### `Pre-reqs for Azure Event Hub as Target`
-
-The user must have permissions:
-
-**Manage, Send and Listen** 
-
-The permission **Manage** is nedded to create the control topics on the target.
-
-The Event Hub must be at least in a tier STANDARD, to use kafka integration features:
-
-More information:
-[https://github.com/Azure/azure-event-hubs-for-kafka](https://github.com/Azure/azure-event-hubs-for-kafka)
-
-
-### `Setting the MM2`
+### Setting the MM2
 You must settings the MM2 and enable the topics and the flow witch you want to replicate:
 
 [/config/mm2-config.properties](/config/mm2-config.properties)
@@ -45,7 +31,7 @@ source->target.topics=topic1,topic2
 ```
 
 
-### `Running the MM2`
+### Running the MM2
 
 Below the command to run it:
 
@@ -110,7 +96,22 @@ In addition to the main topic of messages that is created in the target with the
 
 ### `Other informations to help`
 
-Concepts between Kafka x Azure Event Hub
+> Pre-reqs for Azure Event Hub as Target
+
+The user must have permissions:
+
+**Manage, Send and Listen** 
+
+The permission **Manage** is nedded to create the control topics on the target.
+
+The Event Hub must be at least in a tier STANDARD, to use kafka integration features:
+
+More information:
+[https://github.com/Azure/azure-event-hubs-for-kafka](https://github.com/Azure/azure-event-hubs-for-kafka)
+
+
+
+> Concepts between Kafka x Azure Event Hub
 
 | Kafka | Event Hub |
 | ----- | ----- |
@@ -121,7 +122,7 @@ Concepts between Kafka x Azure Event Hub
 | Offset | Offset |
 
 
-To test connectivity
+> To test connectivity
 
 ```
 openssl s_client -connect krotondevpoc.servicebus.windows.net:9093
